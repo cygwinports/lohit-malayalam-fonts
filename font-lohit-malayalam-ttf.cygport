@@ -1,0 +1,28 @@
+inherit font
+
+NAME="font-lohit-malayalam-ttf"
+VERSION=2.5.4
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Lohit Malayalam font"
+DESCRIPTION="Lohit ('Red' in Sanskrit) is a font family which supports various
+Indic scripts."
+HOMEPAGE="https://fedorahosted.org/lohit/"
+SRC_URI="https://fedorahosted.org/releases/l/o/lohit/lohit-malayalam-${VERSION}.tar.gz"
+SRC_DIR="lohit-malayalam-${VERSION}"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake ttf
+}
+
+src_install() {
+	cd ${B}
+	fontinto TTF
+	dofont *.ttf
+
+	dofontconf *.conf
+
+	dodoc OFL.txt
+}
